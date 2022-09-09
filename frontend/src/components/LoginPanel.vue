@@ -54,12 +54,15 @@
                     this.password_validate = 0;
                     this.email_validate = 0;
 
-                    axios.post("http://api.farmer.rda.gov.ge/login", {
+                    axios.post("http://localhost:8000/login", {
                         email : this.email,
                         password : this.password
                     }).then((response) => {
                         let role = response.data.role;
-                        window.localStorage.setItem("role", role);
+                        let id = response.data.id;
+
+                        window.localStorage.setItem("role", role); // მომხმარებლის როლი
+                        window.localStorage.setItem("id", id); // მომხმარებლის აიდი
 
                         if(Number.parseInt(role) === 1) {
                             this.$router.push("/farmer_check");
@@ -83,6 +86,8 @@
         },
 
         mounted() {
+            document.title = "სისტემაში შესვლა";
+            
             let loggedin = window.localStorage.getItem("loggedin");
             let role = window.localStorage.getItem("role");
 

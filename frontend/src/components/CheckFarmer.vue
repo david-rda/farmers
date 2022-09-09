@@ -51,7 +51,7 @@
             checkFarmer() {
                 this.loading = true;
 
-                axios.post("http://api.farmer.rda.gov.ge/farmer_check", { personal : this.personal.trim() })
+                axios.post("http://localhost:8000/farmer_check", { personal : this.personal.trim() })
                 .then((response) => {
                     console.clear();
                     console.log(response.data);
@@ -61,6 +61,10 @@
                     this.loading = false;
                 });
             }
+        },
+
+        mounted() {
+            document.title = "ფერმერის გადამოწმება";
         },
     }
 </script>

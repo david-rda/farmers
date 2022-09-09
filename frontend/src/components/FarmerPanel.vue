@@ -84,7 +84,7 @@
         methods : {
             getData() {
                 this.loading = true;
-                axios.post("http://api.farmer.rda.gov.ge/get_farmer", { personal : this.value.trim() }).then((response) => {
+                axios.post("http://localhost:8000/get_farmer", { personal : this.value.trim() }).then((response) => {
                     this.data = response.data.data.data;
                     
                     if(Number.parseInt(this.data.properties.length) == 0) {
@@ -99,6 +99,8 @@
         },
 
         mounted() {
+            document.title = "საჯარო რეესტრში ძებნა";
+            
             let loggedin = window.localStorage.getItem("loggedin");
             let role = window.localStorage.getItem("role");
 

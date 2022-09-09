@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import FarmerPanel from "./components/FarmerPanel.vue";
 import LoginPanel from "./components/LoginPanel.vue";
 import CheckFarmer from "./components/CheckFarmer.vue";
+import MySettings from "./components/Settings.vue";
 
 const routes = [
     {
@@ -18,6 +19,10 @@ const routes = [
     {
         path : "/farmer_check",
         component : CheckFarmer
+    },
+    {
+        path : "/settings",
+        component : MySettings
     }
 ]
 

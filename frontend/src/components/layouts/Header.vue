@@ -3,10 +3,19 @@
             <div class="container">
                 <ul>
                     <li>
-                        <a href="#"><img src="../../assets/RDA-Logo-Geo.png" style="width: 120px;"></a>
+                        <a href="#">
+                            <img src="../../assets/RDA-Logo-Geo.png" style="width: 120px;">
+                        </a>
                     </li>
                     <li class="i">
-                        <a href="javascript:void(0)" title="სისტემიდან გასვლა" v-on:click="LogOut()"><img src="../../assets/icons/log-out.svg"></a>
+                        <a href="javascript:void(0)" title="სისტემიდან გასვლა" v-on:click="LogOut()">
+                            <img src="../../assets/icons/log-out.svg">
+                        </a>
+                    </li>
+                    <li class="i">
+                        <router-link to="/settings" title="პარამეტრები">
+                            <img src="../../assets/icons/settings.png">
+                        </router-link>
                     </li>
                     <li class="i" v-show="this.role == 2">
                         <a href="javascript:void(0)" v-on:click="this.$router.push('/farmer_check')">ფერმერის გადამოწმება</a>
@@ -15,7 +24,9 @@
                         <a href="javascript:void(0)" v-on:click="this.$router.push('/panel')">საჯარო რეესტრი</a>
                     </li>
                     <li class="i">
-                        <a href="https://rda.gov.ge" target="_blank"><img src="../../assets/icons/home.svg"></a>
+                        <a href="https://rda.gov.ge" target="_blank">
+                            <img src="../../assets/icons/home.svg">
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -38,10 +49,12 @@
             async LogOut() {
 
                 try {
-                    await axios.post("http://api.farmer.rda.gov.ge/logout"); // გაიგზავნება მოთხოვნა სისტემიდან გამოსასვლელად
+                    await axios.post("http://localhost:8000/logout"); // გაიგზავნება მოთხოვნა სისტემიდან გამოსასვლელად
                     
                     this.$router.push("/"); // გადამისამართდება მთავარ (ავტორიზაციის) გვერდზე
                     window.localStorage.removeItem("loggedin");
+                    window.localStorage.removeItem("role"); // ავტორიზირებული მომხმარებლის როლის შენახვა
+                    window.localStorage.removeItem("id"); // ავტორიზირებული მომხმარებლის აიდის შენახვა
 
                     console.clear(); // მოცემული ბრძანება გაასუფთავებს კონსოლის ფანჯარას არსებული შეტყობინებებისგან
                 }catch(err) {

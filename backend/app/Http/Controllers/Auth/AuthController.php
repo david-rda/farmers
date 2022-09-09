@@ -19,7 +19,8 @@ class AuthController extends Controller implements IAuthenticate
         if(Auth::attempt($data)) {
             return response()->json([
                 "login" => 1,
-                "role" => Auth::user()->role
+                "role" => Auth::user()->role,
+                "id" => Auth::user()->id,
             ], 200);
         }else {
             return response()->json([
