@@ -8,14 +8,14 @@
                     <li class="i">
                         <a href="javascript:void(0)" title="სისტემიდან გასვლა" v-on:click="LogOut()"><img src="../../assets/icons/log-out.svg"></a>
                     </li>
-                    <li class="i">
-                        <a href="https://rda.gov.ge" target="_blank" title=""><img src="../../assets/icons/home.svg"></a>
-                    </li>
                     <li class="i" v-show="this.role == 2">
                         <a href="javascript:void(0)" v-on:click="this.$router.push('/farmer_check')">ფერმერის გადამოწმება</a>
                     </li>
                     <li class="i" v-show="this.role == 2">
                         <a href="javascript:void(0)" v-on:click="this.$router.push('/panel')">საჯარო რეესტრი</a>
+                    </li>
+                    <li class="i">
+                        <a href="https://rda.gov.ge" target="_blank"><img src="../../assets/icons/home.svg"></a>
                     </li>
                 </ul>
             </div>

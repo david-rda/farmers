@@ -22,7 +22,7 @@
             <br>
         </div>
         <div class="error-block" v-if="show">
-            <span>ავტორიზაცია ვერ განხორციელდა</span>
+            <span>ელფოსტა ან პაროლი არასწორია</span>
         </div>
     </div>
 </template>
@@ -71,7 +71,7 @@
 
                     }).catch((err) => {
                         this.$router.push("/");
-                        window.localStorage.setItem("loggedin", false);
+                        window.localStorage.removeItem("loggedin");
                         this.show = true;
 
                         setTimeout(() => {

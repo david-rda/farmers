@@ -145,7 +145,7 @@
     }
 
     .data-block {
-        margin-top: 50px;
+        margin-top: 40px;
         background-color: #fff;
         padding: 20px;
         overflow: hidden;
@@ -178,10 +178,10 @@
         border-radius: 4px;
         font-family: "frutiger_geo_caps" !important;
         font-size: 20px;
-    }
 
-    button:hover {
-        color: #fff;
-        background-color: #005019;
+        &:hover {
+            color: #fff;
+            background-color: #005019;
+        }
     }
 </style>
