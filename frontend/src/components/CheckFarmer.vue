@@ -90,7 +90,7 @@
     }
 
     .status_ok {
-        background-color: #005019;
+        background-color: lighten(#005019, 15%);
         padding: 5px;
         color: #fff;
         margin-top: 10px;

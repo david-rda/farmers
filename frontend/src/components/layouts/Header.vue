@@ -18,10 +18,10 @@
                         </router-link>
                     </li>
                     <li class="i" v-show="this.role == 2">
-                        <a href="javascript:void(0)" v-on:click="this.$router.push('/farmer_check')">ფერმერის გადამოწმება</a>
+                        <router-link to="/farmer_check">ფერმერის გადამოწმება</router-link>
                     </li>
                     <li class="i" v-show="this.role == 2">
-                        <a href="javascript:void(0)" v-on:click="this.$router.push('/panel')">საჯარო რეესტრი</a>
+                        <router-link to="/panel">საჯარო რეესტრი</router-link>
                     </li>
                     <li class="i">
                         <a href="https://rda.gov.ge" target="_blank">
