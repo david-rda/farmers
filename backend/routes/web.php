@@ -14,6 +14,6 @@ Route::post("/login", [AuthController::class, "Login"]);
 
 Route::post("/logout", [LogoutController::class, "Logout"]);
 
-Route::post("/change_password", [PasswordController::class, "ChangePassword"])
+Route::post("/change_password", [PasswordController::class, "ChangePassword"]);
 
 ?>

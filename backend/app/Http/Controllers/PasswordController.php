@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PasswordRequest;
 use App\Http\Interfaces\IPassword;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Hash;
 
 class PasswordController extends Controller implements IPassword

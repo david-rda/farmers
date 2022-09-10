@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Interfaces\IAuthenticate;
 
@@ -17,6 +17,8 @@ class AuthController extends Controller implements IAuthenticate
         ]);
 
         if(Auth::attempt($data)) {
+            $request->session()->regenerate();
+            
             return response()->json([
                 "login" => 1,
                 "role" => Auth::user()->role,
