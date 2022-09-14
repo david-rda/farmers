@@ -7,7 +7,7 @@
                 <form @submit.prevent="checkFarmer()">
                     <div class="form-group">
                         <label for="check">ფერმერის გადამოწმება</label>
-                        <input type="text" placeholder="შეიყვანეთ პირადი ნომერი" v-model="personal">
+                        <input type="text" placeholder="შეიყვანეთ პირადი ნომერი / საიდენტიფიკაციო კოდი ..." v-model="personal" maxlength="11" id="check" name="check">
                     </div><br>
                     <div class="form-group">
                         <button type="submit">შემოწმება</button>

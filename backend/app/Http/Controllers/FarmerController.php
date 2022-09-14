@@ -18,7 +18,7 @@ class FarmerController extends Controller implements ICheckFarmer
 
     public function checkFarmer(Request $request) {
         $this->validate($request, [
-            "personal" => "required|min:11|max:11"
+            "personal" => "required|min:9|max:11"
         ]);
         
         $login = 'agrocredit';
