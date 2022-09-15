@@ -82,19 +82,24 @@
         },
 
         methods : {
-            getData() {
-                this.loading = true;
-                axios.post("http://localhost:8000/get_farmer", { personal : this.value.trim() }).then((response) => {
-                    this.data = response.data.data.data;
+            async getData() {
+                try {
+                    this.loading = true; // ლოუდერის გამოჩენა
+
+                    const res = await axios.post("http://localhost:8000/get_farmer", { personal : this.value.trim() });
                     
+                    this.data = res?.data?.data?.data;
+                        
                     if(Number.parseInt(this.data.properties.length) == 0) {
                         document.getElementById("demo").innerHTML = "ინფორმაცია ვერ მოიძებნა";
                     }else {
                         document.getElementById("demo").innerHTML = "";
                     }
-                }).then(response => {
-                    this.loading = false;
-                });
+
+                    this.loading = false; // ლოუდერის გაქრობა
+                }catch(err) {
+                    this.loading = false; // ლოუდერის გაქრობა
+                }
             },
         },
 
