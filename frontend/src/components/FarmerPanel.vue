@@ -31,7 +31,7 @@
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის ფართობი</td>
-                                    <td>{{ item.area + " კვ.მ" }}</td>
+                                    <td>{{ item.area + " კვ.მ " + `(ძველი მონაცემები: ${item.documented} კვ.მ)` }}</td>
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის საკუთრების სტატუსი</td>
@@ -42,7 +42,7 @@
                                     <td>
                                         <ul v-for="ownerships in item.ownerships" :key="ownerships">
                                             <li v-if="ownerships.company" v-html="''" id="hide"></li>
-                                            <li v-else v-html="ownerships.personal + ' - ' + ownerships.firstname + ' ' + ownerships.lastname + '<br>'"></li>
+                                            <li v-else><span v-show="ownerships.personal != null">{{ ownerships.personal + ' - '}}</span>{{ ownerships.firstname + ' ' + ownerships.lastname }}</li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -89,6 +89,7 @@
                     const res = await axios.post("http://localhost:8000/get_farmer", { personal : this.value.trim() });
                     
                     this.data = res?.data?.data?.data;
+                    console.log(this.data);
                         
                     if(Number.parseInt(this.data.properties.length) == 0) {
                         document.getElementById("demo").innerHTML = "ინფორმაცია ვერ მოიძებნა";
