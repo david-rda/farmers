@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FarmerController;
+use App\Http\Controllers\Api\FarmerController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\Api\LogoutController;
+use App\Http\Controllers\Api\PasswordController;
 
 Route::post("/get_farmer", [FarmerController::class, "getFarmerData"]);
 

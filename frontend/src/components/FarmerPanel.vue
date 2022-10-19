@@ -31,7 +31,11 @@
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის ფართობი</td>
-                                    <td>{{ item.area + " კვ.მ " + `(ძველი მონაცემები: ${item.documented} კვ.მ)` }}</td>
+                                    <td>{{ item.area + " კვ.მ " }} 
+                                        <span v-if="item.documented !== undefined">
+                                            {{ `(ძველი მონაცემები: ${item.documented} კვ.მ)` }}
+                                        </span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის საკუთრების სტატუსი</td>
@@ -42,7 +46,13 @@
                                     <td>
                                         <ul v-for="ownerships in item.ownerships" :key="ownerships">
                                             <li v-if="ownerships.company" v-html="''" id="hide"></li>
-                                            <li v-else><span v-show="ownerships.personal != null">{{ ownerships.personal + ' - '}}</span>{{ ownerships.firstname + ' ' + ownerships.lastname }}</li>
+                                            
+                                            <li v-else>
+                                                <span v-show="ownerships.personal != null">
+                                                    {{ ownerships.personal + ' - '}}
+                                                </span>
+                                                {{ ownerships.firstname + ' ' + ownerships.lastname }}
+                                            </li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -67,7 +77,6 @@
 <script>
     import axios from 'axios';
     import HeaderNavigation from "./layouts/Header.vue";
-
     export default {
         data() {
             return {
@@ -76,82 +85,66 @@
                 loading : ""
             }
         },
-
         components : {
             "header-navigation" : HeaderNavigation
         },
-
         methods : {
             async getData() {
                 try {
                     this.loading = true; // ლოუდერის გამოჩენა
-
-                    const res = await axios.post("http://localhost:8000/get_farmer", { personal : this.value.trim() });
-                    
+                    const res = await axios.post("http://api.farmer.rda.gov.ge/get_farmer", { personal : this.value.trim() });
                     this.data = res?.data?.data?.data;
-                    console.log(this.data);
-                        
+                    
                     if(Number.parseInt(this.data.properties.length) == 0) {
                         document.getElementById("demo").innerHTML = "ინფორმაცია ვერ მოიძებნა";
                     }else {
                         document.getElementById("demo").innerHTML = "";
                     }
-
                     this.loading = false; // ლოუდერის გაქრობა
                 }catch(err) {
                     this.loading = false; // ლოუდერის გაქრობა
                 }
+                
             },
         },
-
         mounted() {
             document.title = "საჯარო რეესტრში ძებნა";
             
             let loggedin = window.localStorage.getItem("loggedin");
             let role = window.localStorage.getItem("role");
-
             if(!loggedin) this.$router.push("/");
-
             if(role == 1) this.$router.push("/farmer_check");
         }
     }
 </script>
-
 <style scoped lang="scss">
     @font-face {
         font-family: "frutiger_geo_regular";
         src: url("../fonts/Linotype - Neue Frutiger Georgian Regular.otf");
     }
-
     @font-face {
         font-family: "frutiger_geo";
         src: url("../fonts/Linotype - Neue Frutiger Georgian Black.otf");
     }
-
     .contents {
         border: 3px solid #005019;
         padding: 6px;
         font-family: "frutiger_geo_regular";
         margin-top: 20px;
     }
-
     td {
         font-family: "frutiger_geo_regular";
     }
-
     td:last-child {
         margin-bottom: 0;
     }
-
     #hide {
         display: none !important;
     }
-
     label {
         color: #3c3c3c;
         font-family: "frutiger_geo";
     }
-
     .data-block {
         margin-top: 40px;
         background-color: #fff;
@@ -159,7 +152,6 @@
         overflow: hidden;
         font-family: "frutiger_geo_regular";
     }
-
     input[type="text"] {
         width: 100%;
         height: 55px;
@@ -172,7 +164,6 @@
         margin-top: 10px;
         font-family: "frutiger_geo_regular";
     }
-
     button {
         width: 100%;
         height: 55px;
@@ -186,7 +177,6 @@
         border-radius: 4px;
         font-family: "frutiger_geo_caps" !important;
         font-size: 20px;
-
         &:hover {
             color: #fff;
             background-color: #005019;

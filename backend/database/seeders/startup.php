@@ -19,7 +19,7 @@ class startup extends Seeder
             "name" => "monitoring",
             "email" => "monitoring@rda.gov.ge",
             "password" => bcrypt(123456),
-            "role" => 1 // or 2 | 1 წვდომა აქვს მხოლოდ ფერმერის შემოწმებაზე, 2 - ყველაფერზე
+            "role" => 2 // or 2 | 1 წვდომა აქვს მხოლოდ ფერმერის შემოწმებაზე, 2 - ყველაფერზე
         ]);
     }
 }
