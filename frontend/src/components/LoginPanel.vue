@@ -7,7 +7,7 @@
         <div class="login-form d-flex justify-content-center">
             <form @submit.prevent="Login_To_Panel()">
                 <div class="form-group">
-                    <label for="email">ელფოსტა</label>
+                    <label for="email">ელ.&nbsp;ფოსტა</label>
                     <input type="email" v-model="email" id="email" v-bind:class="(email_validate == 1) ? 'error' : ''">
                 </div><br>
                 <div class="form-group">
