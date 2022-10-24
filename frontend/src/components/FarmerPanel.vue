@@ -77,6 +77,7 @@
 <script>
     import axios from 'axios';
     import HeaderNavigation from "./layouts/Header.vue";
+
     export default {
         data() {
             return {
@@ -85,14 +86,22 @@
                 loading : ""
             }
         },
+
         components : {
             "header-navigation" : HeaderNavigation
         },
+
         methods : {
             async getData() {
                 try {
                     this.loading = true; // ლოუდერის გამოჩენა
-                    const res = await axios.post("http://api.farmer.rda.gov.ge/get_farmer", { personal : this.value.trim() });
+
+                    const res = await axios.post("http://api.farmer.rda.gov.ge/get_farmer", { personal : this.value.trim() }, {
+                    headers : {
+                        "Authorization" : `Bearer ${window.localStorage.getItem("token")}`
+                    }
+                });
+
                     this.data = res?.data?.data?.data;
                     
                     if(Number.parseInt(this.data.properties.length) == 0) {
@@ -107,44 +116,55 @@
                 
             },
         },
+
         mounted() {
             document.title = "საჯარო რეესტრში ძებნა";
             
             let loggedin = window.localStorage.getItem("loggedin");
             let role = window.localStorage.getItem("role");
+
             if(!loggedin) this.$router.push("/");
+
             if(role == 1) this.$router.push("/farmer_check");
         }
     }
 </script>
+
 <style scoped lang="scss">
     @font-face {
         font-family: "frutiger_geo_regular";
         src: url("../fonts/Linotype - Neue Frutiger Georgian Regular.otf");
     }
+
     @font-face {
         font-family: "frutiger_geo";
         src: url("../fonts/Linotype - Neue Frutiger Georgian Black.otf");
     }
+
     .contents {
         border: 3px solid #005019;
         padding: 6px;
         font-family: "frutiger_geo_regular";
         margin-top: 20px;
     }
+
     td {
         font-family: "frutiger_geo_regular";
     }
+
     td:last-child {
         margin-bottom: 0;
     }
+
     #hide {
         display: none !important;
     }
+
     label {
         color: #3c3c3c;
         font-family: "frutiger_geo";
     }
+
     .data-block {
         margin-top: 40px;
         background-color: #fff;
@@ -152,6 +172,7 @@
         overflow: hidden;
         font-family: "frutiger_geo_regular";
     }
+
     input[type="text"] {
         width: 100%;
         height: 55px;
@@ -164,6 +185,7 @@
         margin-top: 10px;
         font-family: "frutiger_geo_regular";
     }
+
     button {
         width: 100%;
         height: 55px;
@@ -177,6 +199,7 @@
         border-radius: 4px;
         font-family: "frutiger_geo_caps" !important;
         font-size: 20px;
+
         &:hover {
             color: #fff;
             background-color: #005019;

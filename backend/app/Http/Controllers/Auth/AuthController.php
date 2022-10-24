@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use App\Models\User;
 use App\Http\Interfaces\IAuthenticate;
 
@@ -17,16 +17,19 @@ class AuthController extends Controller implements IAuthenticate
         ]);
 
         if(Auth::attempt($data)) {
-            $request->session()->regenerate();
-            
+
+            $token = Auth::user()->createToken("API_ACCESS_TOKEN")->accessToken;
+
             return response()->json([
                 "login" => 1,
                 "role" => Auth::user()->role,
                 "id" => Auth::user()->id,
+                "token" => $token
             ], 200);
         }else {
             return response()->json([
-                "login" => 0
+                "login" => 0,
+                "message" => "იმეილი ან პაროლი არასწორია."
             ], 422);
         }
     }

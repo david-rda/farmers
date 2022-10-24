@@ -54,15 +54,17 @@
                     this.password_validate = 0;
                     this.email_validate = 0;
 
-                    axios.post("http://localhost:8000/login", {
+                    axios.post("http://api.farmer.rda.gov.ge/login", {
                         email : this.email,
                         password : this.password
                     }).then((response) => {
                         let role = response.data.role;
                         let id = response.data.id;
+                        let token = response.data.token;
 
                         window.localStorage.setItem("role", role); // მომხმარებლის როლი
                         window.localStorage.setItem("id", id); // მომხმარებლის აიდი
+                        window.localStorage.setItem("token", token);
 
                         if(Number.parseInt(role) === 1) {
                             this.$router.push("/farmer_check");

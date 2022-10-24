@@ -15,11 +15,19 @@ class startup extends Seeder
      */
     public function run()
     {
-        User::create([
-            "name" => "monitoring",
-            "email" => "monitoring@rda.gov.ge",
-            "password" => bcrypt(123456),
-            "role" => 2 // or 2 | 1 წვდომა აქვს მხოლოდ ფერმერის შემოწმებაზე, 2 - ყველაფერზე
+        User::insert([
+            [
+                "name" => "prime",
+                "email" => "prime@rda.gov.ge",
+                "password" => bcrypt("Prime!!"),
+                "role" => 1
+            ],
+            [
+                "name" => "prime",
+                "email" => "prime@rda.gov.ge",
+                "password" => bcrypt("Monitoring1!"),
+                "role" => 2
+            ]
         ]);
     }
 }

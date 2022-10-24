@@ -1,19 +1,19 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\FarmerController;
+use App\Http\Controllers\FarmerController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Api\LogoutController;
-use App\Http\Controllers\Api\PasswordController;
+use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PasswordController;
 
-Route::post("/get_farmer", [FarmerController::class, "getFarmerData"]);
+Route::post("/get_farmer", [FarmerController::class, "getFarmerData"])->middleware("auth:api");
 
-Route::post("/farmer_check", [FarmerController::class, "checkFarmer"]);
+Route::post("/farmer_check", [FarmerController::class, "checkFarmer"])->middleware("auth:api");
 
 Route::post("/login", [AuthController::class, "Login"]);
 
 Route::post("/logout", [LogoutController::class, "Logout"]);
 
-Route::post("/change_password", [PasswordController::class, "ChangePassword"]);
+Route::post("/change_password", [PasswordController::class, "ChangePassword"])->middleware("auth:api");
 
 ?>

@@ -53,6 +53,7 @@
         components : {
             "header-navigation" : HeaderNavigation
         },
+
         data() {
             return {
                 current_password : "",
@@ -67,13 +68,11 @@
         methods: {
             Change_Password : async function() {
                 try {
-                    const change = await axios.post("http://localhost:8000/change_password", {
+                    const change = await axios.post("http://api.farmer.rda.gov.ge/change_password", {
                         current_password : this.current_password.trim(),
                         new_password : this.new_password.trim(),
                         id : Number.parseInt(window.localStorage.getItem("id"))
                     });
-
-                    console.log(change);
 
                     if(change.data.changed) {
                         this.show = true;
@@ -160,6 +159,14 @@
         padding: 30px;
     }
 
+    @media screen and(max-width: 768px) {
+        .settings-block {
+            table {
+                margin-left: -100px !important;
+            }
+        }
+    }
+
     input[type="password"] {
         width: 150%;
         height: 55px;
@@ -195,7 +202,7 @@
 
     .notify {
         padding: 10px;
-        background-color: #005019;
+        background-color: lighten(#005019, 15%);
         color: #fff;
         position: absolute;
         top: 0;

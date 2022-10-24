@@ -14,8 +14,8 @@
                     </div>
                 </form>
             </div>
-            
-            <hr />
+
+            <br>
 
             <center><div v-if="loading" class="spinner-border text-success"></div></center>
 
@@ -51,10 +51,13 @@
             checkFarmer() {
                 this.loading = true;
 
-                axios.post("http://localhost:8000/farmer_check", { personal : this.personal.trim() })
+                axios.post("http://api.farmer.rda.gov.ge/farmer_check", { personal : this.personal.trim() }, {
+                    headers : {
+                        "Authorization" : `Bearer ${window.localStorage.getItem("token")}`
+                    }
+                })
                 .then((response) => {
                     console.clear();
-                    console.log(response.data);
                     this.check = Number.parseInt(response.data.status);
                     this.loading = false;
                 }).catch((err) => {
@@ -65,7 +68,7 @@
 
         mounted() {
             document.title = "ფერმერის გადამოწმება";
-        },
+        }
     }
 </script>
 
