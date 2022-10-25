@@ -17,52 +17,52 @@
             <br>
             <div class="data">
                 <center><div v-if="loading" class="spinner-border text-success"></div></center>
-                <div v-for="item in data.properties" :key="item">
+                <div v-for="item in data?.properties" :key="item">
                     <div class="contents">
                         <table class="table">
                             <tbody>
                                 <tr>
                                     <td>რეგისტრაციის თარიღი</td>
-                                    <td>{{ item.registered }}</td>
+                                    <td>{{ item?.registered }}</td>
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის საკადასტრო კოდი</td>
-                                    <td>{{ item.cadastral }}</td>
+                                    <td>{{ item?.cadastral }}</td>
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის ფართობი</td>
-                                    <td>{{ item.area + " კვ.მ " }} 
-                                        <span v-if="item.documented !== undefined">
-                                            {{ `(ძველი მონაცემები: ${item.documented} კვ.მ)` }}
+                                    <td>{{ item?.area + " კვ.მ " }} 
+                                        <span v-if="item?.documented !== undefined">
+                                            {{ `(ძველი მონაცემები: ${item?.documented} კვ.მ)` }}
                                         </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის საკუთრების სტატუსი</td>
-                                    <td>{{ item.ownership }}</td>
+                                    <td>{{ item?.ownership }}</td>
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის მესაკუთრეები</td>
                                     <td>
-                                        <ul v-for="ownerships in item.ownerships" :key="ownerships">
-                                            <li v-if="ownerships.company" v-html="''" id="hide"></li>
+                                        <ul v-for="ownerships in item?.ownerships" :key="ownerships">
+                                            <li v-if="ownerships?.company" v-html="''" id="hide"></li>
                                             
                                             <li v-else>
-                                                <span v-show="ownerships.personal != null">
-                                                    {{ ownerships.personal + ' - '}}
+                                                <span v-show="ownerships?.personal != null">
+                                                    {{ ownerships?.personal + ' - '}}
                                                 </span>
-                                                {{ ownerships.firstname + ' ' + ownerships.lastname }}
+                                                {{ ownerships?.firstname + ' ' + ownerships?.lastname }}
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის სტატუსი</td>
-                                    <td>{{ item.status }}</td>
+                                    <td>{{ item?.status }}</td>
                                 </tr>
                                 <tr>
                                     <td>მიწის ნაკვეთის კატეგორია</td>
-                                    <td>{{ item.category }}</td>
+                                    <td>{{ item?.category }}</td>
                                 </tr>
                             </tbody>
                         </table>
