@@ -72,6 +72,10 @@
                         current_password : this.current_password.trim(),
                         new_password : this.new_password.trim(),
                         id : Number.parseInt(window.localStorage.getItem("id"))
+                    }, {
+                        headers : {
+                            "Authorization" : `Bearer ${window.localStorage.getItem("token")}`
+                        }
                     });
 
                     if(change.data.changed) {
