@@ -89,6 +89,7 @@
                     window.localStorage.removeItem("loggedin");
                     window.localStorage.removeItem("role"); // ავტორიზირებული მომხმარებლის როლის შენახვა
                     window.localStorage.removeItem("id"); // ავტორიზირებული მომხმარებლის აიდის შენახვა
+                    window.localStorage.removeItem("token"); // access ტოკენის წაშლა სტორიჯიდან
 
                     console.clear(); // მოცემული ბრძანება გაასუფთავებს კონსოლის ფანჯარას არსებული შეტყობინებებისგან
                 }catch(err) {
