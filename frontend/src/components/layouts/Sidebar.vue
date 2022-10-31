@@ -22,13 +22,9 @@
     }
 </script>
 
-<style scoped lang="scss">
-    .container {
-        border-radius: 8px;
-    }
-    
+<style scoped lang="scss">   
     .nav-pills {
-        border-radius: 8px;
+        border-radius: 4px;
         font-family: "frutiger_geo_regular";
 
         & * {
@@ -37,7 +33,7 @@
 
         & .nav-link {
             background-color: #F7F7F7;
-            border-radius: 8px;
+            border-radius: 4px;
 
             &:hover {
                 background-color: #104f27;

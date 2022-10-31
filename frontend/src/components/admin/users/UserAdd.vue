@@ -110,34 +110,8 @@
 </script>
 
 <style scoped lang="scss">
-    .container {
-        border-radius: 8px;
-    }
-
     button, input, label, option, select {
         font-family: "frutiger_geo_regular";
-    }
-
-    .nav-pills {
-        font-family: "frutiger_geo_regular";
-    }
-
-    .nav-pills {
-        border-radius: 8px;
-
-        & * {
-            color: #202020 !important;
-        }
-
-        & .nav-link {
-            background-color: #F7F7F7;
-            border-radius: 8px;
-
-            &:hover {
-                background-color: #104f27;
-                color: #fff !important;
-            }
-        }
     }
 
     button[type="submit"] {
@@ -147,7 +121,7 @@
         padding: 15px 18px;
         border: none;
         outline: none;
-        border-radius: 6px;
+        border-radius: 4px;
         
         &:hover {
             background-color: #104f27;
@@ -161,7 +135,7 @@
         border: none;
         background-color: #F7F7F7;
         outline: none;
-        border-radius: 6px;
+        border-radius: 4px;
         color: #3c3c3c;
     }
 
@@ -169,7 +143,7 @@
         padding: 10px 18px;
         color: #fff;
         font-family: "frutiger_geo_regular";
-        border-radius: 6px;
+        border-radius: 4px;
         background-color: #104f27;
     }
 
@@ -177,7 +151,7 @@
         padding: 10px 18px;
         color: #fff;
         font-family: "frutiger_geo_regular";
-        border-radius: 6px;
+        border-radius: 4px;
         background-color: #d9534f;
     }
 </style>
