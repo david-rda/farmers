@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import { createRouter, createWebHistory } from "vue-router";
+import { BIconPencilSquare, BIconTrash } from "bootstrap-icons-vue";
 
 import FarmerPanel from "./components/FarmerPanel.vue";
 import LoginPanel from "./components/LoginPanel.vue";
@@ -46,4 +47,10 @@ const router = createRouter({
     routes : routes
 });
 
-createApp(App).use(router).mount('#app')
+const app = createApp(App);
+
+app.component("BIconPencilSquare", BIconPencilSquare);
+app.component("BIconTrash", BIconTrash);
+
+app.use(router);
+app.mount('#app');

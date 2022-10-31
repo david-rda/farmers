@@ -24,7 +24,7 @@
 
 <style scoped lang="scss">
     .container {
-        border-radius: 6px;
+        border-radius: 8px;
     }
     
     .nav-pills {
