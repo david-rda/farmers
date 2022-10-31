@@ -8,6 +8,12 @@ use App\Http\Interfaces\ICheckFarmer;
 
 class FarmerController extends Controller implements ICheckFarmer
 {
+    /**
+     * ფერმერზე ინფორმაციის წამოღების მეთოდი
+     * @method POST,
+     * @return json data
+     * @param Request
+     */
     public function getFarmerData(Request $request) {
         $registered = json_decode(Http::get('http://agroinsurance2020.mepa.gov.ge/test_service/CURL?personal_id='. $request->personal));
 
@@ -16,6 +22,12 @@ class FarmerController extends Controller implements ICheckFarmer
         ], 200);
     }
 
+    /**
+     * ფერმერზე რეგისტრაციის გადამოწმების მეთოდი
+     * @method POST,
+     * @return json data
+     * @param Request
+     */
     public function checkFarmer(Request $request) {
         $this->validate($request, [
             "personal" => "required|min:9|max:11"

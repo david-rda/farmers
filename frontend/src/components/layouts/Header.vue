@@ -4,12 +4,12 @@
         <nav v-bind:class="this.sidenav_show ? 'sideNav mg' : 'none'">
             <ul>
                 <li>
-                    <router-link to="https://rda.gov.ge">მთავარი</router-link>
+                    <a href="https://rda.gov.ge">მთავარი</a>
                 </li>
-                <li v-show="this.role == 2">
+                <li v-show="this.role == 2 || this.role == 3">
                     <router-link to="/farmer_check">ფერმერის გადამოწმება</router-link>
                 </li>
-                <li v-show="this.role == 2">
+                <li v-show="this.role == 2 || this.role == 3">
                     <router-link to="/panel">საჯარო რეესტრი</router-link>
                 </li>
                 <li>
@@ -48,10 +48,13 @@
                             <img src="../../assets/icons/settings.png">
                         </router-link>
                     </li>
-                    <li class="i" v-show="this.role == 2">
+                    <li class="i" v-show="this.role == 3">
+                        <router-link to="/admin">ადმინ პანელი</router-link>
+                    </li>
+                    <li class="i" v-show="this.role == 2 || this.role == 3">
                         <router-link to="/farmer_check">ფერმერის გადამოწმება</router-link>
                     </li>
-                    <li class="i" v-show="this.role == 2">
+                    <li class="i" v-show="this.role == 2 || this.role == 3">
                         <router-link to="/panel">საჯარო რეესტრი</router-link>
                     </li>
                     <li class="i">
@@ -81,7 +84,6 @@
 
         methods: {
             async LogOut() {
-
                 try {
                     await axios.post("http://api.farmer.rda.gov.ge/logout"); // გაიგზავნება მოთხოვნა სისტემიდან გამოსასვლელად
                     
@@ -114,6 +116,7 @@
             if(!loggedin) this.$router.push("/");
 
             this.role = window.localStorage.getItem("role");
+            console.log(this.role);
         },
     }
 </script>

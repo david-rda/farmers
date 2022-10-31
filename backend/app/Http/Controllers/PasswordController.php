@@ -10,6 +10,7 @@ use Hash;
 
 class PasswordController extends Controller implements IPassword
 {
+    // პაროლის ცვილებისას გაგზავნილი მონაცემების ვალიდაციის მეთოდი
     public function ValidatePassword(PasswordRequest $request) {
         try {
             $validated = $request->validated();
@@ -19,6 +20,12 @@ class PasswordController extends Controller implements IPassword
         }
     }
 
+    /**
+     * პაროლის ცვლილების მეთოდი
+     * @method POST,
+     * @return json data
+     * @param Request
+     */
     public function ChangePassword(PasswordRequest $request) {
         $validated = $this->ValidatePassword($request); // შეყვანილი მნიშვნელობების ვალიდირება/გაფილტვრა
 

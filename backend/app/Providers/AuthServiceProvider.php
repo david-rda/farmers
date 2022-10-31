@@ -27,6 +27,26 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Passport::personalAccessTokensExpireIn(Carbon::now()->addYears(100));
+        Passport::personalAccessTokensExpireIn(Carbon::now()->addYears(1));
+
+        // უფლებების განსაზღვრა ავტორიზირებული მომხმარებლისთვის
+
+        Gate::define("delete-user", function($user) {
+            return $user->role == 3;
+        });
+
+        Gate::define("edit-user", function($user) {
+            return $user->role == 3;
+        });
+
+        Gate::define("add-user", function($user) {
+            return $user->role == 3;
+        });
+
+        Gate::define("get-users", function($user) {
+            return $user->role == 3;
+        });
+        
+        // უფლებების განსაზღვრა ავტორიზირებული მომხმარებლისთვის
     }
 }

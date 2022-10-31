@@ -65,13 +65,14 @@
                         window.localStorage.setItem("role", role); // მომხმარებლის როლი
                         window.localStorage.setItem("id", id); // მომხმარებლის აიდი
                         window.localStorage.setItem("token", token);
+                        window.localStorage.setItem("loggedin", true);
 
                         if(Number.parseInt(role) === 1) {
                             this.$router.push("/farmer_check");
-                            window.localStorage.setItem("loggedin", true);
                         }else if(Number.parseInt(role) === 2) {
                             this.$router.push("/panel");
-                            window.localStorage.setItem("loggedin", true);
+                        }else if(Number.parseInt(role) === 3) {
+                            this.$router.push("/admin");
                         }
 
                     }).catch((err) => {
@@ -97,6 +98,7 @@
 
             if(loggedin && role == 1) this.$router.push("/farmer_check");
             if(loggedin && role == 2) this.$router.push("/panel");
+            if(loggedin && role == 3) this.$router.push("/admin");
         }
     }
 </script>

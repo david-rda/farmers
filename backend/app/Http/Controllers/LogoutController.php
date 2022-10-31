@@ -8,6 +8,12 @@ use Auth;
 
 class LogoutController extends Controller implements ILogout
 {
+    /**
+     * სისტემიდან გამოსვლის მეთოდი
+     * @method POST,
+     * @return int
+     * @param Request
+     */
     public function Logout(Request $request) {
         try {
             Auth::logout();

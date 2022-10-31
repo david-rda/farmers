@@ -97,10 +97,10 @@
                     this.loading = true; // ლოუდერის გამოჩენა
 
                     const res = await axios.post("http://api.farmer.rda.gov.ge/get_farmer", { personal : this.value.trim() }, {
-                        headers : {
-                            "Authorization" : `Bearer ${window.localStorage.getItem("token")}`
-                        }
-                    });
+                    headers : {
+                        "Authorization" : `Bearer ${window.localStorage.getItem("token")}`
+                    }
+                });
 
                     this.data = res?.data?.data?.data;
                     
