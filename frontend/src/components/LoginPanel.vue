@@ -1,25 +1,24 @@
 <template>
-    <div>
-        <div class="header-logo">
-            <img src="../assets/RDA-Logo-Geo.png" />
-        </div>
-        <br>
-        <div class="login-form d-flex justify-content-center">
-            <form @submit.prevent="Login_To_Panel()">
-                <div class="form-group">
-                    <label for="email">ელ.&nbsp;ფოსტა</label>
-                    <input type="email" v-model="email" id="email" v-bind:class="(email_validate == 1) ? 'error' : ''">
-                </div><br>
-                <div class="form-group">
-                    <label for="password">პაროლი</label>
-                    <input type="password" v-model="password" id="password" v-bind:class="(password_validate == 1) ? 'error' : ''">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-xs-12 col-sm-12 offset-md-3 offset-lg-3">
+                <div class="header-logo">
+                    <img src="../assets/RDA-Logo-Geo.png" />
                 </div>
-                <br>
-                <div class="form-group">
-                    <button type="submit">შესვლა</button>
-                </div>
-            </form>
-            <br>
+                <form @submit.prevent="Login_To_Panel()">
+                    <div class="mb-3">
+                        <label for="email">ელ.&nbsp;ფოსტა</label>
+                        <input type="email" v-model="email" id="email" class="form-control" v-bind:class="(email_validate == 1) ? 'error' : ''">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password">პაროლი</label>
+                        <input type="password" v-model="password" id="password" class="form-control" v-bind:class="(password_validate == 1) ? 'error' : ''">
+                    </div>
+                    <div class="d-grid mb-3">
+                        <button type="submit">შესვლა</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="error-block" v-if="show">
             <span>ელფოსტა ან პაროლი არასწორია</span>
@@ -103,7 +102,7 @@
     }
 </script>
 
-<style scoped>
+<style scoped >
     /**
         ღია მწვანე: #82be00
         მუქი მწვანე: #005019
@@ -125,31 +124,9 @@
         src: url("../fonts/NeueFrutigerGeorgianCAPS-Black.ttf");
     }
 
-    @media screen and (max-width: 768px) {
-        .login-form {
-            margin: 20px;
-            margin-left: 30px;
-        }
-
-        .header-logo > img {
-            margin-right: 50px;
-        }
-    }
-
-    @media only screen and (device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) {
-        .login-form {
-            margin: 20px;
-            margin-left: 30px;
-        }
-    }
-
     * {
         font-family: "frutiger_geo";
         box-sizing: border-box;
-    }
-
-    .login-form {
-        margin-right: 140px !important;
     }
 
     .header-logo {
@@ -161,7 +138,6 @@
     }
 
     .header-logo > img {
-        width: 250;
         height: 100px;
         margin-left: 40px !important;
     }
@@ -171,7 +147,6 @@
     }
 
     input[type="email"], input[type="password"] {
-        width: 150%;
         height: 55px;
         padding: 0 15px;
         color: #3c3c3c;
@@ -183,8 +158,12 @@
         margin-top: 10px;
     }
 
+    .form-control:focus {
+        box-shadow: none !important;
+        outline: none !important;
+    }
+
     button {
-        width: 150%;
         height: 55px;
         padding: 0 15px;
         border: none;

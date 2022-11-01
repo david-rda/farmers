@@ -5,45 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Interfaces\IUser;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Auth;
 
 class UserController extends Controller implements IUser
 {
-    public function ValidateUserData(Request $request) {
-        try {
-            $this->validate($request, [
-                "name" => "required|string",
-                "email" => "required|email",
-                "password" => [
-                    "required",
-                    "min:4",
-                    "regex:/[a-z]/",
-                    "regex:/[A-Z]/",
-                    "regex:/[0-9]/",
-                    "regex:/[!@#?$%&*)(]/"
-                ],
-                "role" => "required|numeric"
-            ]);
-
-            return true;
-        }catch(Exception $e) {
-            return false;
-        }
-    }
-
-    public function Add_User(Request $request) {
-        $validated_data = $this->ValidateUserData($request);
+    public function Add_User(UserRequest $request) {
+        $validated = $request->validated();
 
         if(Gate::allows("add-user", Auth::user())) {
-            if($validated_data) {
+            if($validated) {
                 try {
                     User::create([
-                        "name" => $request->name,
-                        "email" => $request->email,
-                        "password" => bcrypt($request->password),
-                        "role" => $request->role
+                        "name" => $validated["name"],
+                        "email" => $validated["email"],
+                        "password" => bcrypt($validated["password"]),
+                        "role" => $validated["role"]
                     ]);
         
                     return response()->json([

@@ -2,11 +2,10 @@
     namespace App\Http\Interfaces;
 
     use Illuminate\Http\Request;
+    use App\Http\Requests\UserRequest;
 
     interface IUser {
-        public function ValidateUserData(Request $request);
-
-        public function Add_User(Request $request); // იუზერის დამატების მეთოდი
+        public function Add_User(UserRequest $request); // იუზერის დამატების მეთოდი
 
         public function Edit_User(int $id, Request $request); // იუზერის რედაქტირების მეთოდი
 

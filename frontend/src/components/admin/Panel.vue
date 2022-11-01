@@ -8,31 +8,45 @@
                 
                 <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12">
                     <div class="container bg-white p-0 table-responsive">
-                        <table class="table table-striped">
-                            <thead class="table-dark">
+                        <table class="table table-hover">
+                            <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>სახელი</th>
                                     <th>ელ.ფოსტა</th>
                                     <th>როლი</th>
-                                    <th>ქმედება</th>
+                                    <th class="text-center">ქმედება</th>
                                 </tr>
                             </thead>
                             <tbody class="p-2">
-                                <tr v-for="(user_data, index) in users" :key="index">
+                                <tr v-for="(user_data, index) in users" :key="user_data?.id">
                                     <td>{{ index + 1 }}</td>
-                                    <td>{{ user_data.name }}</td>
-                                    <td>{{ user_data.email }}</td>
-                                    <td>{{ user_data.role }}</td>
-                                    <td>
+                                    <td>{{ user_data?.name }}</td>
+                                    <td>{{ user_data?.email }}</td>
+                                    <td>{{ user_data?.role }}</td>
+                                    <td class="text-center">
                                         <div class="btn-group">
-                                            <router-link class="btn btn-primary" :to="'/admin/user/edit/' + user_data.id"><BIconPencilSquare />&nbsp;&nbsp;რედაქტირება</router-link>
-                                            <button type="button" class="btn btn-danger" :data-id="user_data.id" v-on:click="deleteUser($event)"><BIconTrash />&nbsp;&nbsp;წაშლა</button>
+                                            <router-link class="btn btn-primary" :to="'/admin/user/edit/' + user_data?.id" title="რედაქტირება"><BIconPencilSquare class="event" /></router-link>
+                                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal" title="წაშლა" :data-id="user_data?.id" v-on:click="getId($event)"><BIconTrash class="event" /></button>
                                         </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>ნამდვილად გსურთ თუ არა წაშლა?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">არა</button>
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal" v-on:click="deleteUser()">დიახ</button>
                     </div>
                 </div>
             </div>
@@ -50,7 +64,9 @@
 
         data() {
             return {
-                users : []
+                users : [],
+
+                uid : ""
             }
         },
 
@@ -75,11 +91,14 @@
         },
 
         methods : {
-            async deleteUser(event) {
-                let id = event.target.getAttribute("data-id"); // ღილაკზე დაკლიკებისას წვდომა ხდება იმავე იუზერის აიდზე
+            getId(event) {
+                let id = event.target.getAttribute("data-id");
+                this.uid = id; // წაშლისას მონიშნული იუზერის აიდი
+            },
 
-                try {                
-                    await axios.post("http://api.farmer.rda.gov.ge/user/delete/" + id, {}, {
+            async deleteUser() {
+                try {
+                    await axios.post("http://api.farmer.rda.gov.ge/user/delete/" + this.uid, {}, {
                         headers : {
                             "Authorization" : `Bearer ${window.localStorage.getItem("token")}`
                         }
@@ -101,11 +120,11 @@
 </script>
 
 <style scoped lang="scss">
-    .container {
-        border-radius: 8px;
-    }
-
     .btn, .nav-pills {
         font-family: "frutiger_geo_regular";
+    }
+
+    .event {
+        pointer-events: none;
     }
 </style>

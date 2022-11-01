@@ -17,25 +17,11 @@ class startup extends Seeder
     {
         // როლი 1 წვდომა აქვს მხოლოდ ფერმერის სემოწმებაზე
         // 2-ს შემოწმებაზეც და იფნორმაციის მოძიებაზეც
-        User::insert([
-            [
-                "name" => "prime",
-                "email" => "prime@rda.gov.ge",
-                "password" => bcrypt("Prime!!"),
-                "role" => 1
-            ],
-            [
-                "name" => "monitoring",
-                "email" => "Monitoring@rda.gov.ge",
-                "password" => bcrypt("Monitoring1!"),
-                "role" => 2
-            ],
-            [
-                "name" => "aldagi insurance",
-                "email" => "aldagi@rda.gov.ge",
-                "password" => bcrypt("Aldagi1!!"),
-                "role" => 1
-            ]
+        User::create([
+            "name" => "ადმინისტრატორი",
+            "email" => "admin@rda.gov.ge",
+            "password" => bcrypt("1234"),
+            "role" => 3
         ]);
     }
 }

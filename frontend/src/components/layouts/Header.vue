@@ -12,6 +12,9 @@
                 <li v-show="this.role == 2 || this.role == 3">
                     <router-link to="/panel">საჯარო რეესტრი</router-link>
                 </li>
+                <li v-show="this.role == 3">
+                    <router-link to="/admin">ადმინ პანელი</router-link>
+                </li>
                 <li>
                     <router-link to="/settings" title="პარამეტრები">
                         <span>პარამეტრები</span>

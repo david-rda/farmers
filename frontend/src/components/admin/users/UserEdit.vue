@@ -32,6 +32,9 @@
                             <div class="d-grid mb-3">
                                 <button type="submit">რედაქტირება</button>
                             </div>
+                            <div class="d-grid justify-content-center" v-if="loading">
+                                <div class="spinner-grow text-success"></div>
+                            </div>
                             <div class="d-grid text-center">
                                 <div class="message" v-if="success">
                                     <p>{{ message }}</p>
@@ -70,7 +73,9 @@
                 message : "",
 
                 success : false,
-                error : false
+                error : false,
+
+                loading: false
             }
         },
 
@@ -96,6 +101,7 @@
 
         methods : {
             async editUser() {
+                this.loading = true;
                 try {
                     const data = await axios.post("http://api.farmer.rda.gov.ge/user/edit/" + this.$route.params.id, {
                         name : this.name,
@@ -110,6 +116,7 @@
 
                     this.success = true;
                     this.error = false;
+                    this.loading = false;
 
                     this.message = data.data.message;
                 }catch(err) {

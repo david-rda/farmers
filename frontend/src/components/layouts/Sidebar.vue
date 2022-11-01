@@ -22,7 +22,7 @@
     }
 </script>
 
-<style scoped lang="scss">   
+<style scoped lang="scss">
     .nav-pills {
         border-radius: 4px;
         font-family: "frutiger_geo_regular";
